@@ -1,6 +1,6 @@
 // LanguageProficiencyDropdown.js
 import React from 'react';
-import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { FormControl, Select, MenuItem } from '@mui/material';
 
 export default function LanguageProficiencyDropdown({ value, onChange }) {
   return (
