@@ -13,7 +13,6 @@ import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import { styled } from '@mui/material/styles';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import RssFeedRoundedIcon from '@mui/icons-material/RssFeedRounded';
 import { useState, useEffect, useCallback } from 'react';
@@ -82,21 +81,21 @@ export function Search() {
   );
 }
 
+const countryLangMap = {
+  Spain: 'es',
+  France: 'fr',
+  Germany: 'de',
+  USA: 'en',
+};
+
+
 export default function MainContent() {
-  const [focusedCardIndex, setFocusedCardIndex] = useState(null);
   const [articles, setArticles] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState('Spain'); // default country
   const [selectedProficiency, setSelectedProficiency] = useState('simple'); // default proficiency
   const [loading, setLoading] = useState(false);
 
   // Map country names to language codes, e.g., Germany -> "de"
-  const countryLangMap = {
-    Spain: 'es',
-    France: 'fr',
-    Germany: 'de',
-    USA: 'en',
-  };
-
   // Fetch articles based on the selected country
   const fetchArticles = useCallback(async (country) => {
     setLoading(true);
