@@ -98,13 +98,11 @@ export default function MainContent() {
   };
 
   // Fetch articles based on the selected country
-  const fetchArticles = async (country) => {
+  const fetchArticles = useCallback(async (country) => {
     setLoading(true);
     try {
       const lang = countryLangMap[country] || 'en';
-      const response = await fetch(
-        `/api/news?query=${country}&language=${lang}`
-      );
+      const response = await fetch(`/api/news?query=${country}&language=${lang}`);
       const data = await response.json();
       setArticles(data);
     } catch (error) {
@@ -112,12 +110,12 @@ export default function MainContent() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []); // Empty dependency array here since countryLangMap is constant
 
   // Fetch articles when the selected country changes
   useEffect(() => {
     fetchArticles(selectedCountry);
-  }, [selectedCountry]);
+  }, [selectedCountry, fetchArticles]);
 
   // Handler for country chip click
   const handleCountryChange = (country) => {
